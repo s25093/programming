@@ -1,49 +1,58 @@
 #include <iostream>
 #include <string>
-#include <string.h>
+#include <vector>
+#include <sstream>
 
 auto main() -> int {
 
-char array[1000];
-std::cout << "Enter some text: " << std::endl;
-std::cin.get(array, 1000);
+    std::cout << "Enter some text: " << std::endl;
 
-int sizeOfArray = sizeof(array)/array[0];
+    std::vector<char> vecArray;
+    char input;
+    std::string line;
 
-if ((array[0] == '-') & (array[1] == 'n')) {
+    std::getline(std::cin, line);
+    std::istringstream stream(line);
 
-for (int i = 2; i < sizeOfArray; i++) { 
+    while (stream >> input) {
+            vecArray.push_back(input);
+    }
 
-std::cout << array[i] << " ";
+    int sizeOfArray = vecArray.size();
+
+    if ((vecArray[0] == '-') & (vecArray[1] == 'n')) {
+
+        for (int i = 2; i < sizeOfArray; i++) {
+
+            std::cout << vecArray[i] << " ";
+
+        }
+
+    } else if ((vecArray[0] == '-') & (vecArray[1] == 'r')) {
+
+        for (int i = sizeOfArray - 1; i >= 2; i--) {
+
+            std::cout << vecArray[i] << " ";
+
+        }
+
+    } else if ((vecArray[0] == '-') & (vecArray[1] == 'l')) {
+
+        for (int i = 2; i < sizeOfArray; i++) {
+
+            std::cout << vecArray[i] << std::endl;
+
+        }
+
+    } else {
+
+        for (int i = 0; i < sizeOfArray; i++) {
+
+            std::cout << vecArray[i] << " ";
+
+        }
+
+    }
 
 }
-
-} else if ((array[0] == '-') & (array[1] == 'r')) {
-
-for (int i = sizeOfArray - 1; i >= 2; i--) {
-
-std::cout << array[i] << " ";
-
-}
-
-} else if ((array[0] = '-') & (array[1] == 'l')) {
-
-for (int i = 2; i < sizeOfArray; i++) { 
-
-std::cout << array[i] << std::endl;
-
-}
-
-} else {
-
-for (int i = 1; i < sizeOfArray; i++) { 
-
-std::cout << array[i] << std::endl;
-
-}
-
-}
-
-}
-
 
