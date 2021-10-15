@@ -30,10 +30,20 @@ auto main() -> int {
 
     } else if ((vecArray[0] == '-') & (vecArray[1] == 'r')) {
 
-        for (int i = sizeOfArray - 1; i >= 2; i--) {
+        if ((vecArray[2] == '-') & (vecArray[3] == 'l')) {
+            for (int i = sizeOfArray - 1; i >= 4; i--) {
+                std::cout << vecArray[i] << " " << std::endl;
+            }
+        } else if ((vecArray[2] == '-') & (vecArray[3] == 'n')) {
+            for (int i = sizeOfArray - 1; i >= 4; i--) {
 
-            std::cout << vecArray[i] << " ";
+                std::cout << vecArray[i] << " ";
+            }
+        } else {
+            for (int i = sizeOfArray - 1; i >= 2; i--) {
 
+                std::cout << vecArray[i] << " ";
+            }
         }
 
     } else if ((vecArray[0] == '-') & (vecArray[1] == 'l')) {
