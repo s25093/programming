@@ -2,40 +2,49 @@
 #include <string>
 #include <string.h>
 #include <vector>
+#include <stdio.h>
 
 auto main(int argc, char *argv[]) -> int {
 
 auto array = std::vector<std::string>(argc);
+array.shrink_to_fit();
 
-if (argv[1] == std::string("-n")) {
+int sizeOfArray = array.size();
+int sizeOfArray2 = (unsigned)strlen(argv);
 
-for (int i = 2; i < argc; i++) { 
+for (int i = 0; i < sizeOfArray2; i++) {
+array.push_back(argv[i]);
+}
+
+if (strcmp(argv[1], "-n") == 0) {
+
+for (int i = 2; i < sizeOfArray; i++) { 
 
 std::cout << array[i] << " ";
 
 }
 
-} else if (argv[1] == std::string("-r")) {
+} else if (strcmp(argv[1], "-r") == 0) {
 
-for (int i = argc - 1; i >= 2; i--) {
+for (int i = sizeOfArray - 1; i >= 2; i--) {
 
 std::cout << array[i] << " ";
 
 }
 
-} else if (argv[1] == std::string("-l")) {
+} else if (strcmp(argv[1], "-l") == 0) {
 
-for (int i = 2; i < argc; i++) { 
+for (int i = 2; i < sizeOfArray; i++) { 
 
-std::cout << array[i] << std::endl;
+std::cout << array[i] << " " << std::endl;
 
 }
 
 } else {
 
-for (int i = 1; i < argc; i++) { 
+for (int i = 0; i < sizeOfArray; i++) { 
 
-std::cout << array[i] << std::endl;
+std::cout << array[i] << " " << std::endl;
 
 }
 
