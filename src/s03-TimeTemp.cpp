@@ -76,61 +76,73 @@ auto Time::next_second() -> void {
 }
 
 //TODO: define the rest of the functions
+//TODO: fix addition - minute to next hour, etc.
 
-auto Time::operator+ (Time const &input3) const -> Time{
+auto Time::operator+ (Time &input3)  -> Time{
     int nHour, nMinute, nSecond;
     nHour = currentTime1.hour + input3.hour;
     nMinute = currentTime1.minute + input3.minute;
     nSecond = currentTime1.second + input3.second;
 
-    Time resultTime(nHour, nMinute, nSecond);
-
-    if (nHour > 23) {
-        resultTime.hour = input3.hour - 1;
+    if (nSecond > 59) {
+        nSecond = input3.second - 1;
+        nMinute++;
     }
 
     if (nMinute > 59) {
-        resultTime.minute = input3.minute - 1;
+        nMinute = input3.minute + 1;
+        nHour++;
     }
 
-    if (nSecond > 59) {
-        resultTime.second = input3.second - 1;
+    if (nHour > 23) {
+        nHour = input3.hour;
     }
+
+    Time resultTime(nHour, nMinute, nSecond);
 
     currentTime1 = resultTime;
     return resultTime;
 }
 
-/*auto Time::operator- ( Time const &input3) const -> Time {
+// 23 - current time
+// 24 - input time
+// -1 - result time
+
+auto Time::operator- (Time &input3) -> Time {
+
     int nHour, nMinute, nSecond;
     nHour = currentTime1.hour - input3.hour;
     nMinute = currentTime1.minute - input3.minute;
     nSecond = currentTime1.second - input3.second;
 
-    Time resultTime(nHour, nMinute, nSecond);
+    if (nSecond < 0) {
+        nSecond = 60 - (input3.second - currentTime1.second);
+        nMinute--;
+    }
+
+    if (nMinute < 0) {
+        nMinute = 59 - (input3.minute - currentTime1.minute);
+        nHour--;
+    }
 
     if (nHour < 0) {
-        resultTime.hour = 0 - (resultTime.hour - )
+        nHour = 23 - (input3.hour - currentTime1.hour);
     }
 
-    if (nMinute > 59) {
-        resultTime.minute = input3.minute - 1;
-    }
-
-    if (nSecond > 59) {
-        resultTime.second = input3.second - 1;
-    }
+    Time resultTime(nHour, nMinute, nSecond);
 
     currentTime1 = resultTime;
     return resultTime;
 }
+
+/*
 auto operator < ( Time const &) const -> bool ;
 auto operator > ( Time const &) const -> bool ;
 auto operator == ( Time const &) const -> bool ;
 auto operator != ( Time const &) const -> bool ;*/
 
 
-auto Time::to_string() const -> std::string {
+auto Time::to_string() -> std::string {
 
     std::cout << hour << ":" << minute << ":" << second << std::endl;
 
@@ -169,19 +181,13 @@ auto Time::to_string() const -> std::string {
 
         std::cout << "Enter the hour value you wish to compare to the current time: " << std::endl;
         std::cin >> iHour;
-        if (iHour > 23) {
-            std::cout << "Invalid input. Please enter a value up to 23.";
-        }
+
         std::cout << "Enter the minute value you wish to compare to the current time: " << std::endl;
         std::cin >> iMinute;
-        if (iMinute > 59) {
-            std::cout << "Invalid input. Please enter a value up to 59.";
-        }
+
         std::cout << "Enter the second value you wish to compare to the current time: " << std::endl;
         std::cin >> iSecond;
-        if (iSecond > 59) {
-            std::cout << "Invalid input. Please enter a value up to 59.";
-        }
+
 
         Time inputTime(iHour, iMinute, iSecond);
 
@@ -191,9 +197,14 @@ auto Time::to_string() const -> std::string {
         if (operatorStr == "+") {
             operator+(inputTime);
 
-        } else {
-            std::cout << "Invalid operator." << std::endl;
         }
+        else if (operatorStr == "-") {
+            operator-(inputTime);
+
+        } else {
+                std::cout << "Invalid operator." << std::endl;
+        }
+
 
     } else {
         std::cout << "Invalid input." << std::endl;
