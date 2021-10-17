@@ -17,6 +17,11 @@ struct Time {
     auto operator== ( Time &)  -> bool ;
     auto operator!= ( Time &)  -> bool ;
 
+    auto count_seconds () const -> uint64_t ;
+    auto count_minutes () const -> uint64_t ;
+    auto time_to_midnight () const -> Time ;
+
+
     auto next_hour() -> void;
     auto next_minute() -> void;
     auto next_second() -> void;
