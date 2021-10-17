@@ -40,8 +40,6 @@ auto Time::time_of_day() const -> std::string {
     return currentTimeOfDay;
 }
 
-//TODO: print in the format 00, 01 etc.
-
 auto Time::next_hour() -> void {
     hour++;
     if (hour >= 24) {
@@ -74,9 +72,6 @@ auto Time::next_second() -> void {
         }
     }
 }
-
-//TODO: define the rest of the functions
-//TODO: fix addition - minute to next hour, etc.
 
 auto Time::operator+ (Time &input3)  -> Time{
     int nHour, nMinute, nSecond;
