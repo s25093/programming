@@ -195,6 +195,43 @@ auto Time::operator!= ( Time &input3) -> bool {
     }
 }
 
+auto Time::count_seconds () const -> uint64_t {
+    int secondCount = 0;
+    secondCount = (currentTime1.hour * 3600) + (currentTime1.minute * 60) + currentTime1.second;
+    return secondCount;
+}
+
+auto Time::count_minutes () const -> uint64_t {
+    int minuteCount = 0;
+    minuteCount = (currentTime1.hour * 60) + currentTime1.minute;
+    return minuteCount;
+}
+
+auto Time::time_to_midnight () const -> Time {
+    int midHour = 0;
+    int midMinute = 0;
+    int midSecond = 0;
+
+    midHour = 23 - currentTime1.hour;
+    midMinute = 59 - currentTime1.minute;
+
+    if (midHour <= 1) {
+        midHour = 0;
+        if (midMinute <= 1) {
+            midHour = 0;
+            midMinute = 0;
+        }
+    }
+    if (midMinute <= 1) {
+        midMinute = 0;
+    }
+
+    midSecond = 60 - currentTime1.second;
+
+    Time midnightTime(midHour, midMinute, midSecond);
+    std::cout << "There is " << midHour << ":" << midMinute << ":" << midSecond << " left until midnight." << std::endl;
+    return midnightTime;
+}
 
 auto Time::to_string() -> std::string {
 
@@ -205,7 +242,8 @@ auto Time::to_string() -> std::string {
     std::cout << '\n' << std::endl;
 
     std::string input;
-    std::cout << "Extend time by 1 hour, minute, or second? Type hour, minute, or second (or term to terminate). Type op to switch to operator commands: " << std::endl;
+    std::cout << "Extend time by 1 hour, minute, or second? Type hour, minute, or second (or term to terminate)." << std::endl;
+    std::cout << "Type op to switch to operator commands, scount to count seconds, mcount to count minutes and mid to count time until midnight." << std::endl;
     std::cin >> input;
 
     if (input == "hour") {
@@ -270,6 +308,15 @@ auto Time::to_string() -> std::string {
                 std::cout << "Invalid operator." << std::endl;
         }
 
+
+    } else if (input == "scount") {
+        std::cout << count_seconds();
+
+    } else if (input == "mcount") {
+        std::cout << count_minutes();
+
+    } else if (input == "mid") {
+        time_to_midnight();
 
     } else {
         std::cout << "Invalid input." << std::endl;
