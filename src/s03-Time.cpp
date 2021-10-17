@@ -40,6 +40,8 @@ auto Time::time_of_day() const -> std::string {
     return currentTimeOfDay;
 }
 
+//TODO: print in the format 00, 01 etc.
+
 auto Time::next_hour() -> void {
     hour++;
     if (hour >= 24) {
@@ -73,7 +75,133 @@ auto Time::next_second() -> void {
     }
 }
 
-auto Time::to_string() const -> std::string {
+//TODO: define the rest of the functions
+//TODO: fix addition - minute to next hour, etc.
+
+auto Time::operator+ (Time &input3)  -> Time{
+    int nHour, nMinute, nSecond;
+    nHour = currentTime1.hour + input3.hour;
+    nMinute = currentTime1.minute + input3.minute;
+    nSecond = currentTime1.second + input3.second;
+
+    if (nSecond > 59) {
+        nSecond = input3.second - 1;
+        nMinute++;
+    }
+
+    if (nMinute > 59) {
+        nMinute = input3.minute + 1;
+        nHour++;
+    }
+
+    if (nHour > 23) {
+        nHour = input3.hour;
+    }
+
+    Time resultTime(nHour, nMinute, nSecond);
+
+    currentTime1 = resultTime;
+    return resultTime;
+}
+
+auto Time::operator- (Time &input3) -> Time {
+
+    int nHour, nMinute, nSecond;
+    nHour = currentTime1.hour - input3.hour;
+    nMinute = currentTime1.minute - input3.minute;
+    nSecond = currentTime1.second - input3.second;
+
+    if (nSecond < 0) {
+        nSecond = 60 - (input3.second - currentTime1.second);
+        nMinute--;
+    }
+
+    if (nMinute < 0) {
+        nMinute = 59 - (input3.minute - currentTime1.minute);
+        nHour--;
+    }
+
+    if (nHour < 0) {
+        nHour = 23 - (input3.hour - currentTime1.hour);
+    }
+
+    Time resultTime(nHour, nMinute, nSecond);
+
+    currentTime1 = resultTime;
+    return resultTime;
+}
+
+auto Time::operator< (Time &input3) -> bool {
+
+    if (input3.hour <  currentTime1.hour) {
+        std::cout << input3.hour << ":" << input3.minute << ":" << input3.second << " < " <<
+                  currentTime1.hour << ":" << currentTime1.minute << ":" << currentTime1.second << std::endl;
+        return true;
+    } else if (input3.minute < currentTime1.minute) {
+        std::cout << input3.hour << ":" << input3.minute << ":" << input3.second << " < " <<
+                  currentTime1.hour << ":" << currentTime1.minute << ":" << currentTime1.second << std::endl;
+        return true;
+    } else if (input3.second < currentTime1.second) {
+        std::cout << input3.hour << ":" << input3.minute << ":" << input3.second << " < " <<
+                  currentTime1.hour << ":" << currentTime1.minute << ":" << currentTime1.second << std::endl;
+        return true;
+    } else {
+        std::cout << input3.hour << ":" << input3.minute << ":" << input3.second << " !< " <<
+                  currentTime1.hour << ":" << currentTime1.minute << ":" << currentTime1.second << std::endl;
+        return false;
+    }
+}
+auto Time::operator> (Time &input3) -> bool {
+
+    if (input3.hour >  currentTime1.hour) {
+        std::cout << input3.hour << ":" << input3.minute << ":" << input3.second << " > " <<
+                  currentTime1.hour << ":" << currentTime1.minute << ":" << currentTime1.second << std::endl;
+        return true;
+    } else if (input3.minute > currentTime1.minute) {
+        std::cout << input3.hour << ":" << input3.minute << ":" << input3.second << " > " <<
+                  currentTime1.hour << ":" << currentTime1.minute << ":" << currentTime1.second << std::endl;
+        return true;
+    } else if (input3.second > currentTime1.second) {
+        std::cout << input3.hour << ":" << input3.minute << ":" << input3.second << " > " <<
+                  currentTime1.hour << ":" << currentTime1.minute << ":" << currentTime1.second << std::endl;
+        return true;
+    } else {
+        std::cout << input3.hour << ":" << input3.minute << ":" << input3.second << " !> " <<
+                  currentTime1.hour << ":" << currentTime1.minute << ":" << currentTime1.second << std::endl;
+        return false;
+    }
+}
+
+auto Time::operator== (Time &input3) -> bool {
+    if ((input3.hour == currentTime1.hour) &&
+            (input3.minute == currentTime1.minute) &&
+            (input3.second == currentTime1.second)) {
+        std::cout << input3.hour << ":" << input3.minute << ":" << input3.second << " == " <<
+                  currentTime1.hour << ":" << currentTime1.minute << ":" << currentTime1.second << std::endl;
+        return true;
+    } else {
+        std::cout << input3.hour << ":" << input3.minute << ":" << input3.second << " !(==) " <<
+                  currentTime1.hour << ":" << currentTime1.minute << ":" << currentTime1.second << std::endl;
+        return false;
+    }
+}
+
+auto Time::operator!= ( Time &input3) -> bool {
+    if ((input3.hour == currentTime1.hour) &&
+        (input3.minute == currentTime1.minute) &&
+        (input3.second == currentTime1.second)) {
+        std::cout << input3.hour << ":" << input3.minute << ":" << input3.second << " !(!=) " <<
+                  currentTime1.hour << ":" << currentTime1.minute << ":" << currentTime1.second << std::endl;
+        return false;
+    } else {
+        std::cout << input3.hour << ":" << input3.minute << ":" << input3.second << " != " <<
+                  currentTime1.hour << ":" << currentTime1.minute << ":" << currentTime1.second << std::endl;
+        return true;
+    }
+}
+
+
+auto Time::to_string() -> std::string {
 
     std::cout << hour << ":" << minute << ":" << second << std::endl;
 
@@ -82,8 +210,8 @@ auto Time::to_string() const -> std::string {
     std::cout << '\n' << std::endl;
 
     std::string input;
-    std::cout << "Extend time by 1 hour, minute, or second? Type hour, minute, or second (or term to terminate): " << std::endl;
-    std::getline(std::cin, input);
+    std::cout << "Extend time by 1 hour, minute, or second? Type hour, minute, or second (or term to terminate). Type op to switch to operator commands: " << std::endl;
+    std::cin >> input;
 
     if (input == "hour") {
 
@@ -104,6 +232,50 @@ auto Time::to_string() const -> std::string {
 
         runCheck = false;
 
+    } else if (input == "op") {
+
+        int iHour, iMinute, iSecond;
+        std::string operatorStr;
+
+
+        std::cout << "Enter the hour value you wish to compare to the current time: " << std::endl;
+        std::cin >> iHour;
+
+        std::cout << "Enter the minute value you wish to compare to the current time: " << std::endl;
+        std::cin >> iMinute;
+
+        std::cout << "Enter the second value you wish to compare to the current time: " << std::endl;
+        std::cin >> iSecond;
+
+
+        Time inputTime(iHour, iMinute, iSecond);
+
+        std::cout << "Please enter an operator: " << std::endl;
+        std::cin >> operatorStr;
+
+        if (operatorStr == "+") {
+            operator+(inputTime);
+        }
+        else if (operatorStr == "-") {
+            operator-(inputTime);
+
+        } else if (operatorStr == "<") {
+            operator<(inputTime);
+
+        } else if (operatorStr == ">") {
+            operator>(inputTime);
+
+        } else if (operatorStr == "==") {
+            operator==(inputTime);
+
+        } else if (operatorStr == "!=") {
+            operator!=(inputTime);
+
+        } else {
+                std::cout << "Invalid operator." << std::endl;
+        }
+
+
     } else {
         std::cout << "Invalid input." << std::endl;
 
@@ -118,5 +290,6 @@ auto main () -> int {
     while (runCheck) {
         std::cout << currentTime1.to_string() << std::endl;
     }
+
 
 }
