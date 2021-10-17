@@ -6,9 +6,16 @@ struct Time {
 
     enum class timeOfDay{Morning, Noon, Afternoon, Evening, Night};
 
-    auto to_string() const -> std::string;
+    auto to_string() -> std::string;
     auto time_of_day() const -> std::string;
     auto enum_to_string(timeOfDay) const -> std::string;
+
+    auto operator+ ( Time &)  -> Time ;
+    auto operator- ( Time &)  -> Time ;
+    auto operator< ( Time &)  -> bool ;
+    auto operator> ( Time &)  -> bool ;
+    auto operator== ( Time &)  -> bool ;
+    auto operator!= ( Time &)  -> bool ;
 
     auto next_hour() -> void;
     auto next_minute() -> void;
