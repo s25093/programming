@@ -75,7 +75,7 @@ auto evaluate_whole_number_division(std::stack<double>& stack) -> void
     }
     auto const b = pop_top(stack);
     auto const a = pop_top(stack);
-    stack.push(a / b);
+    stack.push((int)a / (int)b);
 }
 
 
@@ -102,15 +102,14 @@ auto evaluate_power(std::stack<double>& stack) -> void
     stack.push(pow(a, b));
 }
 
-//works (first the root, then the value)
+//works
 auto evaluate_sqrt(std::stack<double>& stack) -> void
 {
-    if (stack.size() < 2) {
+    if (stack.size() < 1) {
         throw std::logic_error{"not enough operands for sqrt"};
     }
     auto const a = pop_top(stack);
-    auto const b = pop_top(stack);
-    stack.push(pow(a, 1/b));
+    stack.push(sqrt(a));
 }
 
 //works (natural logarithm)
