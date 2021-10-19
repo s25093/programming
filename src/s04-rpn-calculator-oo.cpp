@@ -40,7 +40,8 @@ namespace student { namespace rpn_calculator {
         {
             std::cout << stack.top() << "\n";
         }
-
+ 
+        //works
         auto Addition::evaluate(stack_type& stack) const -> void
         {
             if (stack.size() < 2) {
@@ -51,6 +52,7 @@ namespace student { namespace rpn_calculator {
             stack.push(a + b);
         }
 
+        //works
         auto Substraction::evaluate(stack_type& stack) const -> void
         {
             if (stack.size() < 2) {
@@ -60,7 +62,8 @@ namespace student { namespace rpn_calculator {
             auto const a = pop_top(stack);
             stack.push(a - b);
         }
-
+        
+        //works
         auto Division::evaluate(stack_type& stack) const -> void
         {
             if (stack.size() < 2) {
@@ -71,6 +74,7 @@ namespace student { namespace rpn_calculator {
             stack.push(a / b);
         }
 
+        //doesn't work - returns normal division result
         auto Whole_Number_Division::evaluate(stack_type& stack) const -> void
         {
             if (stack.size() < 2) {
@@ -80,7 +84,8 @@ namespace student { namespace rpn_calculator {
             auto const a = pop_top(stack);
             stack.push((int)a / b);
         }
-
+        
+        //works
         auto Multiplication::evaluate(stack_type& stack) const -> void
         {
             if (stack.size() < 2) {
@@ -91,6 +96,7 @@ namespace student { namespace rpn_calculator {
             stack.push(a * b);
         }
 
+        //works
         auto Modulo::evaluate(stack_type& stack) const -> void
         {
             if (stack.size() < 2) {
@@ -102,6 +108,7 @@ namespace student { namespace rpn_calculator {
             stack.push(c);
         }
 
+        //works
         auto Power::evaluate(stack_type& stack) const -> void
         {
             if (stack.size() < 2) {
@@ -112,18 +119,20 @@ namespace student { namespace rpn_calculator {
             stack.push(pow(a, b));
         }
 
+        //works
         auto Square_Root::evaluate(stack_type& stack) const -> void
         {
-            if (stack.size() < 2) {
+            if (stack.size() < 1) {
                 throw std::logic_error{"not enough operands for sqrt"};
             }
             auto const a = pop_top(stack);
             stack.push(sqrt(a));
         }
 
+        //works
         auto Log::evaluate(stack_type& stack) const -> void
         {
-            if (stack.size() < 2) {
+            if (stack.size() < 1) {
                 throw std::logic_error{"not enough operands for log"};
             }
             auto const a = pop_top(stack);
@@ -143,7 +152,6 @@ namespace student { namespace rpn_calculator {
         /*auto Calculator::push(std::string str) -> void {
             int x = std::stoi(str);
             std::unique_ptr<Element> opp = x;
-
         }*/
 
         auto Calculator::evaluate() -> void
