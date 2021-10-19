@@ -74,7 +74,7 @@ namespace student { namespace rpn_calculator {
             stack.push(a / b);
         }
 
-        //doesn't work - returns normal division result
+        //works
         auto Whole_Number_Division::evaluate(stack_type& stack) const -> void
         {
             if (stack.size() < 2) {
@@ -82,7 +82,7 @@ namespace student { namespace rpn_calculator {
             }
             auto const b = pop_top(stack);
             auto const a = pop_top(stack);
-            stack.push((int)a / b);
+            stack.push((int)a / (int)b);
         }
         
         //works
