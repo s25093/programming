@@ -21,6 +21,7 @@ switch (a) {
         return "Evening";
     case timeOfDay::Night:
         return "Night";
+    default: return "Null";
 }
 
 }
@@ -337,7 +338,7 @@ auto main () -> int {
         while (runCheck) {
             std::cout << currentTime1.to_string() << std::endl;
         }
-    } catch (std::out_of_range) {
+    } catch (std::out_of_range const&) {
         std::cout << "The value you have entered exceeded the limits.";
     }
 
