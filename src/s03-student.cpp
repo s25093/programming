@@ -2,24 +2,25 @@
 #include <string>
 #include "Student.h"
 
-Student student1("John", "Doe", 25093, 1, 4.5);
+Student student1("John", "Doe", 25093, 1, 4.545);
 
-int Student::print_student_details() {
+auto Student::print_student_details() -> std::string {
 
-std::cout << "Student name: " << name << std::endl;
-std::cout << "Student surname: " << surname << std::endl;
-std::cout << "Student index number: " << indexNumber << std::endl;
-std::cout << "Student semester number: " << semesterNumber << std::endl;
-std::cout << "Student grade average: " << gradeAverage << std::endl;
+    std::string studentDetails;
+    studentDetails = "Student name: " + name + "\n" +
+            "Student surname: " + surname + "\n" +
+            "Student index number: " + std::to_string(indexNumber) + "\n" +
+            "Student semester number: " + std::to_string(semesterNumber) + "\n" +
+            "Student grade average: " + std::to_string(gradeAverage);
 
-return 0;
+    return studentDetails;
 
 }
 
 auto main() -> int {
 
-std::cout << student1.print_student_details() << std::endl;
+    std::cout << student1.print_student_details() << std::endl;
 
-return 0;
+    return 0;
 
 }
