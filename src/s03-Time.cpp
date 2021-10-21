@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Time.h"
+#include <iomanip>
 
 Time currentTime1(23, 59, 59);
 bool runCheck = true;
@@ -233,9 +234,12 @@ auto Time::time_to_midnight () const -> Time {
     return midnightTime;
 }
 
+
 auto Time::to_string() -> std::string {
 
-    std::cout << hour << ":" << minute << ":" << second << std::endl;
+    std::cout << std::setw(2) << std::setfill('0') << hour << ":"
+    << std::setw(2) << std::setfill('0') << minute << ":"
+    << std::setw(2) << std::setfill('0') << second << std::endl;
 
     std::cout << "It is now ";
     std:: cout << time_of_day();
@@ -329,8 +333,12 @@ auto Time::to_string() -> std::string {
 
 auto main () -> int {
 
-    while (runCheck) {
-        std::cout << currentTime1.to_string() << std::endl;
+    try {
+        while (runCheck) {
+            std::cout << currentTime1.to_string() << std::endl;
+        }
+    } catch (std::out_of_range) {
+        std::cout << "The value you have entered exceeded the limits.";
     }
 
 
