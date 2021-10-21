@@ -21,7 +21,6 @@ struct Time {
     auto count_minutes () const -> uint64_t ;
     auto time_to_midnight () const -> Time ;
 
-
     auto next_hour() -> void;
     auto next_minute() -> void;
     auto next_second() -> void;
@@ -30,6 +29,18 @@ struct Time {
         hour = aHour;
         minute = aMinute;
         second = aSecond;
+
+        if (hour > 24) {
+            throw std::out_of_range("The hour value cannot exceed 24");
+        }
+
+        if (hour > 60) {
+            throw std::out_of_range("The minute value cannot exceed 60");
+        }
+
+        if (second > 60) {
+            throw std::out_of_range("The second value cannot exceed  60");
+        }
     }
 
 };
