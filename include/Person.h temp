@@ -1,0 +1,291 @@
+class Person {
+public: 
+	std::string name;
+	std::string surname;
+
+	Person(std::string aName, std::string aSurname)
+	{
+        name = aName;
+        surname = aSurname;
+    }
+
+	virtual auto to_string() const->std::string;
+
+};
+
+class Mr : Person {
+public:
+	std::string title;
+
+
+	Mr(std::string aNamee, std::string aSurnamee, std::string aTitle = "Mr")
+		: Person(aNamee, aSurnamee)
+	{
+		title = aTitle;
+	}
+
+    auto who_is_it(Mr const& person) const -> std::string;
+
+	virtual auto to_string() const ->std::string;
+};
+
+class Ms : Person {
+public:
+	std::string title;
+
+	Ms(std::string aNamee, std::string aSurnamee, std::string aTitle = "Ms")
+		: Person(aNamee, aSurnamee)
+	{
+		title = aTitle;
+	}
+
+    auto who_is_it(Ms const& person) const -> std::string;
+
+	virtual auto to_string()const ->std::string;
+};
+
+class King : Person {
+public:
+	std::string title;
+
+	King(std::string aNamee, std::string aSurnamee, std::string aTitle = "King")
+		: Person(aNamee, aSurnamee)
+	{
+		title = aTitle;
+	}
+
+    auto who_is_it(King const& person) const -> std::string;
+
+	virtual auto to_string() const ->std::string;
+};
+
+class Queen : Person {
+public:
+	std::string title;
+
+	Queen(std::string aNamee, std::string aSurnamee, std::string aTitle = "Queen")
+		: Person(aNamee, aSurnamee)
+	{
+		title = aTitle;
+	}
+
+    auto who_is_it(Queen const& person) const -> std::string;
+
+	virtual auto to_string() const ->std::string;
+};
+
+class GreetingMr : Mr {
+public:
+
+std::string greeting;
+
+Greeting(std::string name, std::string surname, std::string title = "Mr", std::string greeting = "Hi") 
+: Mr(name, surname, title, greeting)
+{
+this->greeting = greeting;
+}
+
+auto greet(Mr &const) const -> std::string;
+
+};
+
+class GreetingMs : Ms {
+public:
+
+std::string greeting;
+
+Greeting(std::string name, std::string surname, std::string title = "Ms", std::string greeting = "Hi") 
+: Ms(name, surname, title, greeting)
+{
+this->greeting = greeting;
+}
+
+auto greet(Ms &const) const -> std::string;
+
+};
+
+class GreetingKing : King {
+public:
+
+std::string greeting;
+
+Greeting(std::string name, std::string surname, std::string title = "King", std::string greeting = "Hi") 
+: King(name, surname, title, greeting)
+{
+this->greeting = greeting;
+}
+
+auto greet(King &const) const -> std::string;
+
+};
+
+class GreetingQueen : Queen {
+public:
+
+std::string greeting;
+
+Greeting(std::string name, std::string surname, std::string title = "Queen", std::string greeting = "Hi") 
+: Queen(name, surname, title, greeting)
+{
+this->greeting = greeting;
+}
+
+auto greet(Queen &const) const -> std::string;
+
+};
+
+class HelloMr : public GreetingMr {
+public:
+std::string greeting;
+
+Hello(std::string name, std::string surname, std::string title = "Mr", std::string greeting = "Hello")
+:  GreetingMr(name, surname, title, greeting) {
+this-> greeting = greeting;
+}
+
+auto greet(Mr &const) const -> std::string;
+
+};
+
+class HelloMs : public GreetingMs {
+public:
+std::string greeting;
+
+Hello(std::string name, std::string surname, std::string title = "Ms", std::string greeting = "Hello")
+:  GreetingMs(name, surname, title, greeting) {
+this-> greeting = greeting;
+}
+
+auto greet(Ms &const) const -> std::string;
+
+};
+
+class HelloKing : public GreetingKing {
+public:
+std::string greeting;
+
+Hello(std::string name, std::string surname, std::string title = "King", std::string greeting = "Hello")
+:  GreetingKing(name, surname, title, greeting) {
+this-> greeting = greeting;
+}
+
+auto greet(King &const) const -> std::string;
+
+};
+
+class HelloQueen : public GreetingQueen {
+public:
+std::string greeting;
+
+Hello(std::string name, std::string surname, std::string title = "Queen", std::string greeting = "Hello")
+:  GreetingQueen(name, surname, title, greeting) {
+this-> greeting = greeting;
+}
+
+auto greet(Queen &const) const -> std::string;
+
+};
+
+class Good_eveningMr : GreetingMr {
+public:
+std::string greeting;
+
+Hello(std::string name, std::string surname, std::string title = "Mr", std::string greeting = "Good evening")
+:  GreetingMr(name, surname, title, greeting) {
+this-> greeting = greeting;
+}
+
+auto greet(Mr &const) const -> std::string;
+
+};
+
+class Good_eveningMs : GreetingMs {
+public:
+std::string greeting;
+
+Hello(std::string name, std::string surname, std::string title = "Ms", std::string greeting = "Good evening")
+:  GreetingMs(name, surname, title, greeting) {
+this-> greeting = greeting;
+}
+
+auto greet(Ms &const) const -> std::string;
+
+};
+
+class Good_eveningKing : GreetingKing {
+public:
+std::string greeting;
+
+Hello(std::string name, std::string surname, std::string title = "King", std::string greeting = "Good evening")
+:  GreetingKing(name, surname, title, greeting) {
+this-> greeting = greeting;
+}
+
+auto greet(King &const) const -> std::string;
+
+};
+
+class Good_eveningQueen : GreetingQueen {
+public:
+std::string greeting;
+
+Hello(std::string name, std::string surname, std::string title = "Queen", std::string greeting = "Good evening")
+:  GreetingQueen(name, surname, title, greeting) {
+this-> greeting = greeting;
+}
+
+auto greet(Queen &const) const -> std::string;
+
+};
+
+class FarewellMr : GreetingMr {
+public:
+std::string greeting;
+
+Hello(std::string name, std::string surname, std::string title = "Mr", std::string greeting = "Farewell")
+:  GreetingMr(name, surname, title, greeting) {
+this-> greeting = greeting;
+}
+
+auto greet(Mr &const) const -> std::string;
+
+};
+
+class FarewellMs : GreetingMs {
+public:
+std::string greeting;
+
+Hello(std::string name, std::string surname, std::string title = "Ms", std::string greeting = "Farewell")
+:  GreetingMs(name, surname, title, greeting) {
+this-> greeting = greeting;
+}
+
+auto greet(Ms &const) const -> std::string;
+
+};
+
+class FarewellKing : GreetingKing {
+public:
+std::string greeting;
+
+Hello(std::string name, std::string surname, std::string title = "King", std::string greeting = "Farewell")
+:  GreetingKing(name, surname, title, greeting) {
+this-> greeting = greeting;
+}
+
+auto greet(King &const) const -> std::string;
+
+};
+
+class FarewellQueen : GreetingQueen {
+public:
+std::string greeting;
+
+Hello(std::string name, std::string surname, std::string title = "Queen", std::string greeting = "Farewell")
+:  GreetingQueen(name, surname, title, greeting) {
+this-> greeting = greeting;
+}
+
+auto greet(Queen &const) const -> std::string;
+
+};
