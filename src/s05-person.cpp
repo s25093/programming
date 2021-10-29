@@ -2,62 +2,62 @@
 #include <string>
 #include "Person.h"
 
-Mr person1("Mr", "Scott", "Lake");
-Ms person2("Ms", "Anna", "Lake");
-King person3("King", "Alfred", "Smith");
-Queen person4("Queen", "Elizabeth", "Stone");
+Mr person1("Scott", "Lake");
+Ms person2("Anna", "Lake");
+King person3("Alfred", "Smith");
+Queen person4("Elizabeth", "Stone");
 
-auto Person::to_string() -> std::string {
+auto Person::to_string() const -> std::string {
     std::string rNameSurname = name + " " + surname;
     return rNameSurname;
 }
-auto Mr::to_string1() -> std::string {
+auto Mr::to_string() const -> std::string {
     std::string rTitleNameSurname = title + " " + name + " " + surname;
     return rTitleNameSurname;
 }
 
-auto Ms::to_string2() -> std::string {
+auto Ms::to_string() const -> std::string {
     std::string rTitleNameSurname = title + " " + name + " " + surname;
     return rTitleNameSurname;
 }
 
-auto King::to_string3() -> std::string {
+auto King::to_string() const -> std::string {
     std::string rTitleNameSurname = title + " " + name + " " + surname;
     return rTitleNameSurname;
 }
 
-auto Queen::to_string4() -> std::string {
+auto Queen::to_string() const -> std::string {
     std::string rTitleNameSurname = title + " " + name + " " + surname;
     return rTitleNameSurname;
 }
 
 
 
-auto who_is_it(Mr &const person) -> std::string {
-    std::string str = person.to_string1();
+auto Mr::who_is_it(Mr const& person) const -> std::string {
+    std::string str = person.to_string();
     return str;
 }
 
-auto who_is_it2(Ms &const person) -> std::string {
-    std::string str = person.to_string2();
+auto Ms::who_is_it(Ms const& person) const -> std::string {
+    std::string str = person.to_string();
     return str;
 }
 
-auto who_is_it3(King& const person) -> std::string {
-    std::string str = person.to_string3();
+auto King::who_is_it(King const& person) const -> std::string {
+    std::string str = person.to_string();
     return str;
 }
 
-auto who_is_it4(Queen& const person) -> std::string {
-    std::string str = person.to_string4();
+auto Queen::who_is_it(Queen const& person) const -> std::string {
+    std::string str = person.to_string();
     return str;
 }
+
 
 int main()
 {
-    std::cout << who_is_it(person1) << std::endl;
-    std::cout << who_is_it2(person2) << std::endl;
-    std::cout << who_is_it3(person3) << std::endl;
-    std::cout << who_is_it4(person4) << std::endl;
+    std::cout << person1.who_is_it(person1) << std::endl;
+    std::cout << person2.who_is_it(person2) << std::endl;
+    std::cout << person3.who_is_it(person3) << std::endl;
+    std::cout << person4.who_is_it(person4) << std::endl;
 }
-
