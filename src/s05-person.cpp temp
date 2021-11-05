@@ -1,0 +1,193 @@
+#include <iostream>
+#include <string>
+#include "Person1.h"
+
+Mr person1("Scott", "Lake");
+Ms person2("Anna", "Lake");
+King person3("Alfred", "Smith");
+Queen person4("Elizabeth", "Stone");
+
+auto Person::to_string() const -> std::string {
+    std::string rNameSurname = name + " " + surname;
+    return rNameSurname;
+}
+auto Mr::to_string() const -> std::string {
+    std::string rTitleNameSurname = title + " " + name + " " + surname;
+    return rTitleNameSurname;
+}
+
+auto Ms::to_string() const -> std::string {
+    std::string rTitleNameSurname = title + " " + name + " " + surname;
+    return rTitleNameSurname;
+}
+
+auto King::to_string() const -> std::string {
+    std::string rTitleNameSurname = title + " " + name + " " + surname;
+    return rTitleNameSurname;
+}
+
+auto Queen::to_string() const -> std::string {
+    std::string rTitleNameSurname = title + " " + name + " " + surname;
+    return rTitleNameSurname;
+}
+
+auto GreetingMr::getGreeting() const -> std::string {
+return greeting;
+}
+
+auto GreetingMs::getGreeting() const -> std::string {
+return greeting;
+}
+
+auto GreetingKing::getGreeting() const -> std::string {
+return greeting;
+}
+
+auto GreetingQueen::getGreeting() const -> std::string {
+return greeting;
+}
+
+auto Good_eveningMr::getGreeting() const -> std::string {
+return greeting;
+}
+
+auto Good_eveningMs::getGreeting() const -> std::string {
+return greeting;
+}
+
+auto Good_eveningKing::getGreeting() const -> std::string {
+return greeting;
+}
+
+auto Good_eveningQueen::getGreeting() const -> std::string {
+return greeting;
+}
+
+auto FarewellMr::getGreeting() const -> std::string {
+return greeting;
+}
+
+auto FarewellMs::getGreeting() const -> std::string {
+return greeting;
+}
+
+auto FarewellKing::getGreeting() const -> std::string {
+return greeting;
+}
+
+auto FarewellQueen::getGreeting() const -> std::string {
+return greeting;
+}
+
+
+auto Mr::who_is_it(Mr const& person) const -> std::string {
+    std::string str = person.to_string();
+    return str;
+}
+
+auto Ms::who_is_it(Ms const& person) const -> std::string {
+    std::string str = person.to_string();
+    return str;
+}
+
+auto King::who_is_it(King const& person) const -> std::string {
+    std::string str = person.to_string();
+    return str;
+}
+
+auto Queen::who_is_it(Queen const& person) const -> std::string {
+    std::string str = person.to_string();
+    return str;
+}
+
+auto GreetingMr::greet(Mr const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto GreetingMs::greet(Ms const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto GreetingKing::greet(King const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto GreetingQueen::greet(Queen const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto HelloMr::greet(Mr const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto HelloMs::greet(Ms const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto HelloKing::greet(King const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto HelloQueen::greet(Queen const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto Good_eveningMr::greet(Mr const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto Good_eveningMs::greet(Ms const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto Good_eveningKing::greet(King const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto Good_eveningQueen::greet(Queen const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto FarewellMr::greet(Mr const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto FarewellMs::greet(Ms const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto FarewellKing::greet(King const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+auto FarewellQueen::greet(Queen const& person) const -> std::string {
+   std::string str = getGreeting() + person.to_string();
+   return str;
+}
+
+GreetingMr greeting1("Scott", "Lake");
+
+
+int main()
+{
+    std::cout << person1.who_is_it(person1) << std::endl;
+    std::cout << person2.who_is_it(person2) << std::endl;
+    std::cout << person3.who_is_it(person3) << std::endl;
+    std::cout << person4.who_is_it(person4) << std::endl;
+    std::cout << greeting1.greet(greeting1) << std::endl;
+}
