@@ -33,12 +33,33 @@ auto Queen::to_string() const -> std::string {
 
 template <typename Osoba>
 auto who_is_it(Osoba const& pers) -> void {
-std::cout << "This is " << pers.name << " " << pers.surname << "." << std::endl;
+std::cout << "This is " << pers.title << " " << pers.name << " " << pers.surname << "." << std::endl;
 }
 
+template <typename Osoba>
+auto Greeting::greet(Osoba const& pers) -> void {
+std::cout << "Greetings, " << pers.title << " " << pers.name << " " << pers.surname << "." << std::endl;
+}
+
+template <typename Osoba>
+auto Hello::greetHello(Osoba const& pers) -> void {
+std::cout << "Hello, " << pers.title << " " << pers.name << " " << pers.surname << "." << std::endl;
+}
+
+template <typename Osoba>
+auto Good_evening::greetGood_evening(Osoba const& pers) -> void {
+std::cout << "Good evening, " << pers.title << " " << pers.name << " " << pers.surname << "." << std::endl;
+}
+
+template <typename Osoba>
+auto Farewell::greetFarewell(Osoba const& pers) -> void {
+std::cout << "Farewell, " << pers.title << " " << pers.name << " " << pers.surname << "." << std::endl;
+}
 
 int main()
 {
     who_is_it(person1);
     who_is_it(person2);
+    person3.greetHello(person3);
+    person4.greetFarewell(person4);
 }
