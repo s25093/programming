@@ -1,5 +1,5 @@
 class Person {
-public: 
+public:
 	std::string name;
 	std::string surname;
 
@@ -7,16 +7,17 @@ public:
 	{
         name = aName;
         surname = aSurname;
-    }
+        }
 
 	virtual auto to_string() const->std::string;
 
 };
 
-class Mr : Person {
+class Mr : public Person {
 public:
+using Person::Person;
+        
 	std::string title;
-
 
 	Mr(std::string aNamee, std::string aSurnamee, std::string aTitle = "Mr")
 		: Person(aNamee, aSurnamee)
@@ -24,13 +25,12 @@ public:
 		title = aTitle;
 	}
 
-    auto who_is_it(Mr const& person) const -> std::string;
-
 	virtual auto to_string() const ->std::string;
 };
 
-class Ms : Person {
+class Ms : public Person {
 public:
+using Person::Person;
 	std::string title;
 
 	Ms(std::string aNamee, std::string aSurnamee, std::string aTitle = "Ms")
@@ -39,13 +39,12 @@ public:
 		title = aTitle;
 	}
 
-    auto who_is_it(Ms const& person) const -> std::string;
-
 	virtual auto to_string()const ->std::string;
 };
 
-class King : Person {
+class King : public Person {
 public:
+using Person::Person;
 	std::string title;
 
 	King(std::string aNamee, std::string aSurnamee, std::string aTitle = "King")
@@ -54,13 +53,12 @@ public:
 		title = aTitle;
 	}
 
-    auto who_is_it(King const& person) const -> std::string;
-
 	virtual auto to_string() const ->std::string;
 };
 
-class Queen : Person {
+class Queen : public Person {
 public:
+using Person::Person;
 	std::string title;
 
 	Queen(std::string aNamee, std::string aSurnamee, std::string aTitle = "Queen")
@@ -68,8 +66,6 @@ public:
 	{
 		title = aTitle;
 	}
-
-    auto who_is_it(Queen const& person) const -> std::string;
 
 	virtual auto to_string() const ->std::string;
 };
