@@ -13,7 +13,34 @@ public:
 
 };
 
-class Mr : public Person {
+class Greeting {
+public:
+template <typename Osoba>
+auto greet(Osoba const& pers) -> void;
+};
+
+class Hello : public Greeting {
+public:
+using Greeting::Greeting;
+template <typename Osoba>
+auto greetHello(Osoba const& pers) -> void;
+};
+
+class Good_evening : public Greeting {
+public:
+using Greeting::Greeting;
+template <typename Osoba>
+auto greetGood_evening(Osoba const& pers) -> void;
+};
+
+class Farewell : public Greeting {
+public:
+using Greeting::Greeting;
+template <typename Osoba>
+auto greetFarewell(Osoba const& pers) -> void;
+};
+
+class Mr : public Person, public Hello, public Good_evening, public Farewell {
 public:
 using Person::Person;
         
@@ -28,7 +55,7 @@ using Person::Person;
 	virtual auto to_string() const ->std::string;
 };
 
-class Ms : public Person {
+class Ms : public Person, public Hello, public Good_evening, public Farewell {
 public:
 using Person::Person;
 	std::string title;
@@ -42,7 +69,7 @@ using Person::Person;
 	virtual auto to_string()const ->std::string;
 };
 
-class King : public Person {
+class King : public Person, public Hello, public Good_evening, public Farewell {
 public:
 using Person::Person;
 	std::string title;
@@ -56,7 +83,7 @@ using Person::Person;
 	virtual auto to_string() const ->std::string;
 };
 
-class Queen : public Person {
+class Queen : public Person, public Hello, public Good_evening, public Farewell {
 public:
 using Person::Person;
 	std::string title;
