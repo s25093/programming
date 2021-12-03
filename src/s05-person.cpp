@@ -1,63 +1,71 @@
-#include <iostream>
-#include <string>
-#include "Person.h"
+class Person {
+public:
+	std::string name;
+	std::string surname;
 
-Mr person1("Scott", "Lake");
-Ms person2("Anna", "Lake");
-King person3("Alfred", "Smith");
-Queen person4("Elizabeth", "Stone");
+	Person(std::string aName, std::string aSurname)
+	{
+        name = aName;
+        surname = aSurname;
+        }
 
-auto Person::to_string() const -> std::string {
-    std::string rNameSurname = name + " " + surname;
-    return rNameSurname;
-}
-auto Mr::to_string() const -> std::string {
-    std::string rTitleNameSurname = title + " " + name + " " + surname;
-    return rTitleNameSurname;
-}
+	virtual auto to_string() const->std::string;
 
-auto Ms::to_string() const -> std::string {
-    std::string rTitleNameSurname = title + " " + name + " " + surname;
-    return rTitleNameSurname;
-}
+};
 
-auto King::to_string() const -> std::string {
-    std::string rTitleNameSurname = title + " " + name + " " + surname;
-    return rTitleNameSurname;
-}
+class Mr : public Person {
+public:
+using Person::Person;
+        
+	std::string title;
 
-auto Queen::to_string() const -> std::string {
-    std::string rTitleNameSurname = title + " " + name + " " + surname;
-    return rTitleNameSurname;
-}
+	Mr(std::string aNamee, std::string aSurnamee, std::string aTitle = "Mr")
+		: Person(aNamee, aSurnamee)
+	{
+		title = aTitle;
+	}
 
+	virtual auto to_string() const ->std::string;
+};
 
+class Ms : public Person {
+public:
+using Person::Person;
+	std::string title;
 
-auto Mr::who_is_it(Mr const& person) const -> std::string {
-    std::string str = person.to_string();
-    return str;
-}
+	Ms(std::string aNamee, std::string aSurnamee, std::string aTitle = "Ms")
+		: Person(aNamee, aSurnamee)
+	{
+		title = aTitle;
+	}
 
-auto Ms::who_is_it(Ms const& person) const -> std::string {
-    std::string str = person.to_string();
-    return str;
-}
+	virtual auto to_string()const ->std::string;
+};
 
-auto King::who_is_it(King const& person) const -> std::string {
-    std::string str = person.to_string();
-    return str;
-}
+class King : public Person {
+public:
+using Person::Person;
+	std::string title;
 
-auto Queen::who_is_it(Queen const& person) const -> std::string {
-    std::string str = person.to_string();
-    return str;
-}
+	King(std::string aNamee, std::string aSurnamee, std::string aTitle = "King")
+		: Person(aNamee, aSurnamee)
+	{
+		title = aTitle;
+	}
 
+	virtual auto to_string() const ->std::string;
+};
 
-int main()
-{
-    std::cout << person1.who_is_it(person1) << std::endl;
-    std::cout << person2.who_is_it(person2) << std::endl;
-    std::cout << person3.who_is_it(person3) << std::endl;
-    std::cout << person4.who_is_it(person4) << std::endl;
-}
+class Queen : public Person {
+public:
+using Person::Person;
+	std::string title;
+
+	Queen(std::string aNamee, std::string aSurnamee, std::string aTitle = "Queen")
+		: Person(aNamee, aSurnamee)
+	{
+		title = aTitle;
+	}
+
+	virtual auto to_string() const ->std::string;
+};
